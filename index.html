@@ -7,81 +7,10 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/custom.css" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
-
-	<style>
-		article .image img {
-			max-height: 350px;
-			object-fit: cover;
-			height: 350px;
-		}
-
-		dialog {
-			border: solid 1px #ccc;
-			padding: 20px;
-			border-radius: 8px;
-			background-color: #fff;
-			width: 100%;
-			max-width: 400px;
-		}
-
-		.failure {
-			color: red;
-		}
-	</style>
-
-	<script>
-		async function sendMessage(event) {
-			console.log("Form submission triggered");
-			var name = document.getElementById('name').value;
-			var email = document.getElementById('email').value;
-			var message = document.getElementById('message').value;
-
-			console.log('Form Data:', { name, email, message });
-
-			// Google Form URL (action URL from the Google Form's HTML form)
-			var googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScIcR3vuEobgxqwdInC11rO7G4gQM8yEbjrSYzZPJlH659YzQ/formResponse';
-
-			// Prepare the data to be sent to Google Form
-			var formData = new FormData();
-			formData.append('entry.1334123298', name); // Name field ID
-			formData.append('entry.215327729', email); // Email field ID
-			formData.append('entry.1723437030', message); // Message field ID
-
-			console.log('Sending request...');
-
-			// Submit the form to Google Form
-			try {
-				var formResponse = await fetch(googleFormUrl, {
-					method: "POST",
-					mode: "no-cors",  // Add 'no-cors' for cross-origin requests
-					headers: {
-						"Content-Type": "application/x-www-form-urlencoded",
-					},
-					body: new URLSearchParams(formData),
-				});
-
-				if (formResponse) {
-					// Show the success dialog
-					document.getElementById('successDialog').showModal();
-				} else {
-					document.getElementById('failureDialog').showModal();
-				}
-			} catch (error) {
-				console.error(error);
-				document.getElementById('failureDialog').showModal();
-			}
-		}
-
-		function closeDialog(dialogId) {
-			console.log('Closing Dialog:', dialogId);
-			document.getElementById(dialogId).close();
-			document.getElementById('contactForm').reset(); // Reset form
-			window.location.reload();
-		}
-	</script>
 </head>
 
 <body class="is-preload">
@@ -91,7 +20,11 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<h1><a href="index.html">Caligorithm Technologies</a></h1>
+			<h1>
+				<a href="index.html">
+					Caligorithm Technologies
+				</a>
+			</h1>
 			<nav>
 				<a href="#menu">Menu</a>
 			</nav>
@@ -208,38 +141,38 @@
 						scalable and secure solutions, our expertise ensures that your vision becomes a reality.</p>
 					<section class="features">
 						<article>
-							<a href="#" class="image"><img src="images/mobile_development.jpg" alt="" /></a>
+							<a class="image"><img src="images/mobile_development.jpg" alt="" /></a>
 							<h3 class="major">Mobile App Development</h3>
 							<p>Transform your vision into intuitive, user-friendly mobile applications. From concept to
 								deployment, we specialize in crafting apps that stand out in the competitive market.
 							</p>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="images/web_development.jpg" alt="" /></a>
+							<a class="image"><img src="images/web_development.jpg" alt="" /></a>
 							<h3 class="major">Web Development</h3>
 							<p>Build responsive, dynamic, and visually stunning web applications that elevate your brand
 								and engage your audience effectively.</p>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="images/cloud_solution.jpg" alt="" /></a>
+							<a class="image"><img src="images/cloud_solution.jpg" alt="" /></a>
 							<h3 class="major">Cloud Solutions</h3>
 							<p>Harness the power of the cloud with our scalable and secure solutions, tailored to
 								optimize your business operations and enable seamless digital transformation.</p>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="images/it_support.jpg" alt="" /></a>
+							<a class="image"><img src="images/it_support.jpg" alt="" /></a>
 							<h3 class="major">IT Consulting</h3>
 							<p>Leverage our industry expertise to devise strategic IT solutions that align with your
 								business goals and drive innovation.</p>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="images/support.jpg" alt="" /></a>
+							<a class="image"><img src="images/support.jpg" alt="" /></a>
 							<h3 class="major">Maintenance and Support</h3>
 							<p>Ensure seamless operation of your digital assets with our reliable maintenance and
 								support services, keeping your systems optimized and up-to-date.</p>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="images/many_more.jpg" alt="" /></a>
+							<a class="image"><img src="images/many_more.jpg" alt="" /></a>
 							<h3 class="major">And Much More</h3>
 							<p>From cloud integration to IoT solutions, our diverse capabilities meet the demands of a
 								rapidly evolving tech landscape.</p>
@@ -262,14 +195,18 @@
 						<div class="field">
 							<label for="name">Name</label>
 							<input type="text" name="name" id="name" required />
+							<span id="nameError" class="error" style="display:none;">Name is required.</span>
 						</div>
 						<div class="field">
 							<label for="email">Email</label>
 							<input type="email" name="email" id="email" required />
+							<span id="emailError" class="error" style="display:none;">Enter a valid email
+								address.</span>
 						</div>
 						<div class="field">
 							<label for="message">Message</label>
 							<textarea name="message" id="message" rows="4" required></textarea>
+							<span id="messageError" class="error" style="display:none;">Message is required.</span>
 						</div>
 					</div>
 					<ul class="actions">
@@ -285,7 +222,8 @@
 					</li>
 					<li class="icon solid fa-phone">+91 99922 88481</li>
 					<li class="icon solid fa-phone">+91 70151 82738</li>
-					<li class="icon solid fa-envelope"><a href="#">caligorithm@gmail.com</a></li>
+					<li class="icon solid fa-envelope"><a
+							href="mailto:contact@caligorithm.com">Contact@caligorithm.com</a></li>
 					<!-- <li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
 					<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
 					<li class="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li> -->
@@ -295,24 +233,14 @@
 				</ul>
 			</div>
 		</section>
-
 	</div>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
 
 	<!-- Success Dialog Box -->
 	<dialog id="successDialog">
 		<div class="inner">
 			<h2 style="color: black;">Thank you for reaching us!</h2>
 			<p>We will get back to you at the earliest.</p>
-			<button type="button" id="closeSuccessDialog" onclick="closeDialog('successDialog')"
-				style="border: 2px solid black; color: black !important;">Close</button>
+			<button type="button" id="closeSuccessDialog" onclick="closeDialog('successDialog')">Close</button>
 		</div>
 	</dialog>
 
@@ -321,10 +249,18 @@
 		<div class="inner">
 			<h2 class="failure">Oops! Something went wrong.</h2>
 			<p>We apologize for the inconvenience. Please try again later.</p>
-			<button type="button" id="closeFailureDialog" onclick="closeDialog('failureDialog')"
-				style="border: 2px solid black; color: black !important;">Close</button>
+			<button type="button" id="closeFailureDialog" onclick="closeDialog('failureDialog')">Close</button>
 		</div>
 	</dialog>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/custom.js"></script>
 
 </body>
 
