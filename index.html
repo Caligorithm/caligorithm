@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Caligorithm Technologies Pvt. Ltd.</title>
+	<link rel="icon" href="images/logo.png" type="image/png">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+
+	<style>
+		article .image img {
+			max-height: 350px;
+			object-fit: cover;
+			height: 350px;
+		}
+
+		dialog {
+			border: solid 1px #ccc;
+			padding: 20px;
+			border-radius: 8px;
+			background-color: #fff;
+			width: 100%;
+			max-width: 400px;
+		}
+
+		.failure {
+			color: red;
+		}
+	</style>
+
+	<script>
+		async function sendMessage(event) {
+			console.log("Form submission triggered");
+			var name = document.getElementById('name').value;
+			var email = document.getElementById('email').value;
+			var message = document.getElementById('message').value;
+
+			console.log('Form Data:', { name, email, message });
+
+			// Google Form URL (action URL from the Google Form's HTML form)
+			var googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScIcR3vuEobgxqwdInC11rO7G4gQM8yEbjrSYzZPJlH659YzQ/formResponse';
+
+			// Prepare the data to be sent to Google Form
+			var formData = new FormData();
+			formData.append('entry.1334123298', name); // Name field ID
+			formData.append('entry.215327729', email); // Email field ID
+			formData.append('entry.1723437030', message); // Message field ID
+
+			console.log('Sending request...');
+
+			// Submit the form to Google Form
+			try {
+				var formResponse = await fetch(googleFormUrl, {
+					method: "POST",
+					mode: "no-cors",  // Add 'no-cors' for cross-origin requests
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					body: new URLSearchParams(formData),
+				});
+
+				if (formResponse) {
+					// Show the success dialog
+					document.getElementById('successDialog').showModal();
+				} else {
+					document.getElementById('failureDialog').showModal();
+				}
+			} catch (error) {
+				console.error(error);
+				document.getElementById('failureDialog').showModal();
+			}
+		}
+
+		function closeDialog(dialogId) {
+			console.log('Closing Dialog:', dialogId);
+			document.getElementById(dialogId).close();
+			document.getElementById('contactForm').reset(); // Reset form
+			window.location.reload();
+		}
+	</script>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1><a href="index.html">Caligorithm Technologies</a></h1>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<div class="inner">
+				<h2>Menu</h2>
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#about-us">About Us</a></li>
+					<li><a href="#why-us">Why Choose Us?</a></li>
+					<li><a href="#our-services">Our Services</a></li>
+					<li><a href="#footer">Contact Us</a></li>
+				</ul>
+				<a href="#" class="close">Close</a>
+			</div>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<div class="logo">
+					<img class="" width="200" src="images/logo.png" alt="Caligorithm Logo">
+				</div>
+				<h2>Caligorithm Technologies</h2>
+				<p>Delivering Excellence, Innovation, and Security</p>
+				<p>Your Partner in Innovative IT Solutions.</p>
+			</div>
+		</section>
+
+		<!-- Wrapper -->
+		<section id="wrapper">
+
+			<!-- About Us -->
+			<section id="about-us" class="wrapper alt style2">
+				<div class="inner">
+					<h2 class="major">About Us</h2>
+					<p>At <strong>Caligorithm Technologies</strong>, we redefine innovation through technology. As a
+						trusted name in IT services, we bring ideas to life by delivering state-of-the-art solutions
+						tailored to your business needs. With a strong focus on scalability, security, and high-quality
+						code, we ensure your digital presence is future-proof and impactful.</p>
+				</div>
+			</section>
+
+			<!-- Why Choose Us -->
+			<section id="why-us" class="wrapper spotlight style1">
+				<div class="inner">
+					<a class="image"><img src="images/secure.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">Scalable and Secure Solutions</h2>
+						<p>We design solutions that grow with your business while maintaining the highest standards of
+							security.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Why Choose Us - High-Quality Code -->
+			<section id="why-us-2" class="wrapper alt spotlight style2">
+				<div class="inner">
+					<a class="image"><img src="images/high_quality.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">High-Quality Code</h2>
+						<p>Our code adheres to best practices and software engineering standards, ensuring reliability
+							and maintainability.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Why Choose Us - On-Time Delivery -->
+			<section id="why-us-3" class="wrapper spotlight style3">
+				<div class="inner">
+					<a class="image"><img src="images/on_time.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">On-Time Delivery</h2>
+						<p>Known for our punctuality, we pride ourselves on delivering projects within the agreed
+							timelines without compromising.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Why Choose Us - Expert Team -->
+			<section id="why-us-4" class="wrapper alt spotlight style2">
+				<div class="inner">
+					<a class="image"><img src="images/expert_team.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">Expert Team</h2>
+						<p>Our highly experienced staff has collaborated with industry leaders like Microsoft, Visa,
+							Fidelity Internationals, ITC Infotech, and Tech Mahindra, bringing a wealth of knowledge and
+							expertise to every project.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Why Choose Us - Technology Agnostic -->
+			<section id="why-us-5" class="wrapper spotlight style3">
+				<div class="inner">
+					<a class="image"><img src="images/technology_agnostic.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">Technology Agnostic</h2>
+						<p>We are not technology-bounded and are flexible to work on any tech stack, ensuring the best
+							solutions for your unique requirements.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Our Services -->
+			<section id="our-services" class="wrapper alt style1">
+				<div class="inner">
+					<h2 class="major">Our Services</h2>
+					<p>We offer a comprehensive range of services designed to meet the diverse needs of our clients.
+						Whether you're a startup looking to build your first application or an enterprise seeking
+						scalable and secure solutions, our expertise ensures that your vision becomes a reality.</p>
+					<section class="features">
+						<article>
+							<a href="#" class="image"><img src="images/mobile_development.jpg" alt="" /></a>
+							<h3 class="major">Mobile App Development</h3>
+							<p>Transform your vision into intuitive, user-friendly mobile applications. From concept to
+								deployment, we specialize in crafting apps that stand out in the competitive market.
+							</p>
+						</article>
+						<article>
+							<a href="#" class="image"><img src="images/web_development.jpg" alt="" /></a>
+							<h3 class="major">Web Development</h3>
+							<p>Build responsive, dynamic, and visually stunning web applications that elevate your brand
+								and engage your audience effectively.</p>
+						</article>
+						<article>
+							<a href="#" class="image"><img src="images/cloud_solution.jpg" alt="" /></a>
+							<h3 class="major">Cloud Solutions</h3>
+							<p>Harness the power of the cloud with our scalable and secure solutions, tailored to
+								optimize your business operations and enable seamless digital transformation.</p>
+						</article>
+						<article>
+							<a href="#" class="image"><img src="images/it_support.jpg" alt="" /></a>
+							<h3 class="major">IT Consulting</h3>
+							<p>Leverage our industry expertise to devise strategic IT solutions that align with your
+								business goals and drive innovation.</p>
+						</article>
+						<article>
+							<a href="#" class="image"><img src="images/support.jpg" alt="" /></a>
+							<h3 class="major">Maintenance and Support</h3>
+							<p>Ensure seamless operation of your digital assets with our reliable maintenance and
+								support services, keeping your systems optimized and up-to-date.</p>
+						</article>
+						<article>
+							<a href="#" class="image"><img src="images/many_more.jpg" alt="" /></a>
+							<h3 class="major">And Much More</h3>
+							<p>From cloud integration to IoT solutions, our diverse capabilities meet the demands of a
+								rapidly evolving tech landscape.</p>
+						</article>
+					</section>
+				</div>
+			</section>
+
+		</section>
+
+		<!-- Footer -->
+		<section id="footer">
+			<div class="inner">
+				<h2 class="major">Get in touch</h2>
+				<p>Join hands with Caligorithm Technologies and experience a seamless blend of innovation, expertise,
+					and reliability. Get in touch with us today and take the first step toward transforming your
+					business.</p>
+				<form id="contactForm" method="post" action="#">
+					<div class="fields">
+						<div class="field">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" required />
+						</div>
+						<div class="field">
+							<label for="email">Email</label>
+							<input type="email" name="email" id="email" required />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="4" required></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><button type="button" value="Send Message" onclick="sendMessage()">Send Message</button>
+						</li>
+					</ul>
+				</form>
+				<ul class="contact">
+					<li class="icon solid fa-home">
+						Hisar<br />
+						Haryana, India<br />
+						125001
+					</li>
+					<li class="icon solid fa-phone">+91 99922 88481</li>
+					<li class="icon solid fa-phone">+91 70151 82738</li>
+					<li class="icon solid fa-envelope"><a href="#">caligorithm@gmail.com</a></li>
+					<!-- <li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
+					<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
+					<li class="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li> -->
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2025 Caligorithm Technologies Private Limited. All rights reserved.</li>
+				</ul>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<!-- Success Dialog Box -->
+	<dialog id="successDialog">
+		<div class="inner">
+			<h2 style="color: black;">Thank you for reaching us!</h2>
+			<p>We will get back to you at the earliest.</p>
+			<button type="button" id="closeSuccessDialog" onclick="closeDialog('successDialog')"
+				style="border: 2px solid black; color: black !important;">Close</button>
+		</div>
+	</dialog>
+
+	<!-- Failure Dialog Box -->
+	<dialog id="failureDialog">
+		<div class="inner">
+			<h2 class="failure">Oops! Something went wrong.</h2>
+			<p>We apologize for the inconvenience. Please try again later.</p>
+			<button type="button" id="closeFailureDialog" onclick="closeDialog('failureDialog')"
+				style="border: 2px solid black; color: black !important;">Close</button>
+		</div>
+	</dialog>
+
+</body>
+
+</html>
