@@ -3722,7 +3722,7 @@ body.is-preload #banner p {
 }
 
 #wrapper>header p {
-	font-family: Raleway, Helvetica, sans-serif;
+	/* font-family: Raleway, Helvetica, sans-serif; */
 	font-size: 1em;
 	font-weight: 200;
 	font-display: swap;

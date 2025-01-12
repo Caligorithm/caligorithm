@@ -4,6 +4,13 @@ article .image img {
     height: 350px !important;
 }
 
+div .image img {
+    max-height: 160;
+    object-fit: cover;
+    width: auto;
+    height: 160px !important; 
+}
+
 dialog {
     border: solid 1px #ccc;
     padding: 20px;
