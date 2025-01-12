@@ -3552,36 +3552,21 @@ body.is-menu-visible #menu .inner {
 }
 
 #banner .logo {
-	-moz-transition: opacity 1s ease, -moz-transform 0.5s ease;
-	-webkit-transition: opacity 1s ease, -webkit-transform 0.5s ease;
-	-ms-transition: opacity 1s ease, -ms-transform 0.5s ease;
-	transition: opacity 1s ease, transform 0.5s ease;
-	-moz-transform: translateY(0);
-	-webkit-transform: translateY(0);
-	-ms-transform: translateY(0);
-	transform: translateY(0);
-	opacity: 1;
 	margin: 0 0 1.3em 0;
 }
 
+.fade-in {
+	opacity: 0; 
+	animation: fadeIn 1s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+	to {
+	  opacity: 1; 
+	}
+  }
+
 #banner h2 {
-	-moz-transition: opacity 0.25s ease, -moz-transform 0.25s ease, -moz-filter 0.1s ease;
-	-webkit-transition: opacity 0.25s ease, -webkit-transform 0.25s ease, -webkit-filter 0.1s ease;
-	-ms-transition: opacity 0.25s ease, -ms-transform 0.25s ease, -ms-filter 0.1s ease;
-	transition: opacity 0.25s ease, transform 0.25s ease, filter 0.1s ease;
-	-moz-transform: translateX(0);
-	-webkit-transform: translateX(0);
-	-ms-transform: translateX(0);
-	transform: translateX(0);
-	-moz-transition-delay: 0.25s;
-	-webkit-transition-delay: 0.25s;
-	-ms-transition-delay: 0.25s;
-	transition-delay: 0.25s;
-	-moz-filter: blur(0);
-	-webkit-filter: blur(0);
-	-ms-filter: blur(0);
-	filter: blur(0);
-	opacity: 1;
 	border-bottom: solid 2px rgba(255, 255, 255, 0.125);
 	font-size: 2.25em;
 	margin-bottom: 0.8em;

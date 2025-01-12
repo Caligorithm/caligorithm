@@ -4,13 +4,6 @@ article .image img {
     height: 350px !important;
 }
 
-div .image img {
-    max-height: 160;
-    object-fit: cover;
-    width: auto;
-    height: 160px !important; 
-}
-
 dialog {
     border: solid 1px #ccc;
     padding: 20px;
@@ -32,4 +25,14 @@ dialog button {
 .error {
     color: red;
     font-size: 0.9em;
+}
+
+@font-face {
+    color: #ffffff;
+    src: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap";
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 16.5pt;
+    font-weight: 300;
+    font-display: swap;
+    line-height: 1.65;
 }
